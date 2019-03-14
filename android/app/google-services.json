@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "7728972273",
+    "firebase_url": "https://sandy-taller-db.firebaseio.com",
+    "project_id": "sandy-taller-db",
+    "storage_bucket": "sandy-taller-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:7728972273:android:1e2a4b3293007e0f",
+        "android_client_info": {
+          "package_name": "com.tipo666.tallersandy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "7728972273-2k3vlduav2110kpd0ah5n14669e6rapn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhDCRv9ZC-Zpy2S2dNbDI9YCPqOoxY-5c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
