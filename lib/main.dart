@@ -19,7 +19,7 @@ void main() {
         SplashScreen.routeName: (BuildContext context) => SplashScreen(),
 
         "/home": (BuildContext context) => Home(),
-        "/clientes":(BuildContext context) => AdmClientes(),
+        "/clientes":(BuildContext context) => AdmCliente(),
         "/servicios":(BuildContext context) => AdmServicios(),
         //"/login": (BuildContext context) => LoginPage()
       },
