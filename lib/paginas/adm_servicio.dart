@@ -15,6 +15,14 @@ class _AdmServiciosState extends State<AdmServicios> {
     return MaterialApp(
       home: new Scaffold(
         appBar: new AppBar(
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.add, color: Colors.white),
+              tooltip: "Nuevo Servicio",
+              onPressed: () => 1,
+            )
+          ],
+          centerTitle: true,
           title: new Text('Servicios'),
         ),
         body: new SingleChildScrollView(
