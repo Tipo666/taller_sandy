@@ -43,7 +43,7 @@ class _AdmClienteState extends State<AdmCliente> {
           },
         ),
         new TextFormField(
-            decoration: new InputDecoration(hintText: 'Numero telefonico'),
+            decoration: new InputDecoration(hintText: 'Numero telefonico del cliente'),
             keyboardType: TextInputType.phone,
             maxLength: 10,
             validator: validarTelefono,
@@ -51,12 +51,62 @@ class _AdmClienteState extends State<AdmCliente> {
               telefono = val;
             }),
         new TextFormField(
-            decoration: new InputDecoration(hintText: 'Direccion'),
+            decoration: new InputDecoration(hintText: 'Direccion del cliente'),
             maxLength: 32,
             validator: validarDireccion,
             onSaved: (String val) {
               direccion = val;
             }),
+        new TextFormField(
+            decoration: new InputDecoration(hintText: 'Chasis del auto'),
+            maxLength: 32,
+            validator: validarDireccion,
+            onSaved: (String val) {
+              direccion = val;
+            }),
+        new TextFormField(
+            decoration: new InputDecoration(hintText: 'Color del auto'),
+            maxLength: 32,
+            validator: validarDireccion,
+            onSaved: (String val) {
+              direccion = val;
+            }),
+        new TextFormField(
+            decoration: new InputDecoration(hintText: 'Ficha del auto'),
+            maxLength: 32,
+            validator: validarDireccion,
+            onSaved: (String val) {
+              direccion = val;
+            }),
+        new TextFormField(
+            decoration: new InputDecoration(hintText: 'Marca del auto'),
+            maxLength: 32,
+            validator: validarDireccion,
+            onSaved: (String val) {
+              direccion = val;
+            }),
+        new TextFormField(
+            decoration: new InputDecoration(hintText: 'Modelo del auto'),
+            maxLength: 32,
+            validator: validarDireccion,
+            onSaved: (String val) {
+              direccion = val;
+            }),
+        new TextFormField(
+            decoration: new InputDecoration(hintText: 'Placa del auto'),
+            maxLength: 32,
+            validator: validarDireccion,
+            onSaved: (String val) {
+              direccion = val;
+            }),
+        new TextFormField(
+            decoration: new InputDecoration(hintText: 'Traccion del auto'),
+            maxLength: 32,
+            validator: validarDireccion,
+            onSaved: (String val) {
+              direccion = val;
+            }),
+
         new SizedBox(height: 15.0),
         new RaisedButton(
           onPressed: _sendToServer,

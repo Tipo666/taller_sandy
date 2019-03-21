@@ -90,7 +90,7 @@ class _AdmServiciosState extends State<AdmServicios> {
 
   String validarDetalleServicio(String value) {
     if (value.length == 0) {
-      return "Se requiere la direccion";
+      return "Se requiere el detalle del servicio";
     }
     else {
       return null;

@@ -85,7 +85,7 @@ class _HomeState extends State<Home> {
             color: Colors.blueAccent,
           ),
           'Productos',
-          "/"),
+          "/productos"),
 
       //_getItem(new Icon(Icons.battery_charging_full), "Batería", "/bateria"),
       info
