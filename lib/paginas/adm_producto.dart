@@ -13,8 +13,8 @@ class _AdmProductoState extends State<AdmProducto> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: new Scaffold(
-        appBar: new AppBar(
+      home: Scaffold(
+        appBar: AppBar(
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.add, color: Colors.white),
@@ -23,12 +23,12 @@ class _AdmProductoState extends State<AdmProducto> {
             )
           ],
           centerTitle: true,
-          title: new Text('Productos'),
+          title: Text('Productos'),
         ),
-        body: new SingleChildScrollView(
-          child: new Container(
-            margin: new EdgeInsets.all(15.0),
-            child: new Form(
+        body: SingleChildScrollView(
+          child: Container(
+            margin: EdgeInsets.all(15.0),
+            child: Form(
               key: _key,
               autovalidate: _validate,
               child: FormUI(),
@@ -39,46 +39,52 @@ class _AdmProductoState extends State<AdmProducto> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget FormUI() {
-    return new Column(
+    return Column(
       children: <Widget>[
-        new TextFormField(
-          decoration: new InputDecoration(hintText: 'Nombre del Producto', icon: Icon(Icons.insert_chart)
-          ),
+        TextFormField(
+          decoration: InputDecoration(
+              hintText: 'Nombre del Producto', icon: Icon(Icons.insert_chart)),
           maxLength: 32,
           validator: validarNombreServicio,
           onSaved: (String val) {
             nombre = val;
           },
         ),
-        new TextFormField(
-            decoration: new InputDecoration(hintText: 'Precio del Producto', icon: Icon(Icons.monetization_on, color: Colors.greenAccent)),
+        TextFormField(
+            decoration: InputDecoration(
+                hintText: 'Precio del Producto',
+                icon: Icon(Icons.monetization_on, color: Colors.greenAccent)),
             keyboardType: TextInputType.number,
             maxLength: 10,
             validator: validarPrecioServicio,
             onSaved: (String val) {
               telefono = val;
             }),
-        new TextFormField(
-            decoration: new InputDecoration(hintText: 'Detalle del Producto', icon: Icon(Icons.lightbulb_outline, color: Colors.blueAccent)),
+        TextFormField(
+            decoration: InputDecoration(
+                hintText: 'Detalle del Producto',
+                icon: Icon(Icons.lightbulb_outline, color: Colors.blueAccent)),
             maxLength: 100,
             maxLines: 5,
             validator: validarDetalleServicio,
             onSaved: (String val) {
               direccion = val;
             }),
-        new SizedBox(height: 15.0),
-        new RaisedButton(
+        SizedBox(height: 15.0),
+        FloatingActionButton(
           onPressed: _sendToServer,
-          child: new Text('Guardar'),
+          tooltip: "Crea el producto",
+          child: Icon(Icons.save),
         )
       ],
     );
   }
 
   String validarNombreServicio(String value) {
-    String patttern = r'(^[a-zA-Z 0-9]*$)';
-    RegExp regExp = new RegExp(patttern);
+    String patron = r'(^[a-zA-Z 0-9]*$)';
+    RegExp regExp = new RegExp(patron);
     if (value.length == 0) {
       return "El nombre del Producto es requerido";
     } else if (!regExp.hasMatch(value)) {
@@ -88,8 +94,6 @@ class _AdmProductoState extends State<AdmProducto> {
   }
 
   String validarPrecioServicio(String value) {
-    String patttern = r'(^[0-9]*$)';
-    RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
       return "El precio del Producto es requerido";
     }
@@ -99,8 +103,7 @@ class _AdmProductoState extends State<AdmProducto> {
   String validarDetalleServicio(String value) {
     if (value.length == 0) {
       return "Se requiere el detalle del Producto";
-    }
-    else {
+    } else {
       return null;
     }
   }

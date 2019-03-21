@@ -13,8 +13,8 @@ class _AdmServiciosState extends State<AdmServicios> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: new Scaffold(
-        appBar: new AppBar(
+      home: Scaffold(
+        appBar: AppBar(
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.add, color: Colors.white),
@@ -23,12 +23,12 @@ class _AdmServiciosState extends State<AdmServicios> {
             )
           ],
           centerTitle: true,
-          title: new Text('Servicios'),
+          title: Text('Servicios'),
         ),
-        body: new SingleChildScrollView(
-          child: new Container(
-            margin: new EdgeInsets.all(15.0),
-            child: new Form(
+        body: SingleChildScrollView(
+          child: Container(
+            margin: EdgeInsets.all(15.0),
+            child: Form(
               key: _key,
               autovalidate: _validate,
               child: FormUI(),
@@ -39,11 +39,12 @@ class _AdmServiciosState extends State<AdmServicios> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget FormUI() {
-    return new Column(
+    return Column(
       children: <Widget>[
-        new TextFormField(
-          decoration: new InputDecoration(hintText: 'Nombre del Servicio', icon: Icon(Icons.filter_vintage)
+         TextFormField(
+          decoration: InputDecoration(hintText: 'Nombre del Servicio', icon: Icon(Icons.filter_vintage)
           ),
           maxLength: 32,
           validator: validarNombreServicio,
@@ -51,26 +52,27 @@ class _AdmServiciosState extends State<AdmServicios> {
             nombre = val;
           },
         ),
-        new TextFormField(
-            decoration: new InputDecoration(hintText: 'Precio del servicio', icon: Icon(Icons.monetization_on, color: Colors.greenAccent)),
+        TextFormField(
+            decoration: InputDecoration(hintText: 'Precio del servicio', icon: Icon(Icons.monetization_on, color: Colors.greenAccent)),
             keyboardType: TextInputType.number,
             maxLength: 10,
             validator: validarPrecioServicio,
             onSaved: (String val) {
               telefono = val;
             }),
-        new TextFormField(
-            decoration: new InputDecoration(hintText: 'Detalle del servicio', icon: Icon(Icons.details, color: Colors.blueAccent)),
+         TextFormField(
+            decoration: InputDecoration(hintText: 'Detalle del servicio', icon: Icon(Icons.details, color: Colors.blueAccent)),
             maxLength: 100,
             maxLines: 5,
             validator: validarDetalleServicio,
             onSaved: (String val) {
               direccion = val;
             }),
-        new SizedBox(height: 15.0),
-        new RaisedButton(
+        SizedBox(height: 15.0),
+        FloatingActionButton(
           onPressed: _sendToServer,
-          child: new Text('Guardar'),
+          tooltip: "Crea el servicio",
+          child: Icon(Icons.save),
         )
       ],
     );
@@ -88,8 +90,8 @@ class _AdmServiciosState extends State<AdmServicios> {
   }
 
   String validarPrecioServicio(String value) {
-    String patttern = r'(^[0-9]*$)';
-    RegExp regExp = new RegExp(patttern);
+   // String patron = r'(^[0-9]*$)';
+    //RegExp regExp = new RegExp(patron);
     if (value.length == 0) {
       return "El precio del servicio es requerido";
     }
