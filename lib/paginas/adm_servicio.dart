@@ -6,65 +6,106 @@ class AdmServicios extends StatefulWidget {
 }
 
 class _AdmServiciosState extends State<AdmServicios> {
-  final _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _key = new GlobalKey();
+  bool _validate = false;
+  String nombre, direccion, telefono;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _formKey,
-      appBar: AppBar(
-        title: Text("Servicios"),
-        centerTitle: true,
-
-      ),
-      body: ListView(
-        children: <Widget>[
-          TextFormField(
-            validator: (value){
-              if(value.isEmpty){
-                return "Por favor introduzca el texto";
-              }
-            },
-          ),
-           ListTile(
-            leading: const Icon(Icons.build),
-            title: TextField(
-
-              decoration: InputDecoration(
-                hintText: "Nombre del servicio",
-              ),
+    return MaterialApp(
+      home: new Scaffold(
+        appBar: new AppBar(
+          title: new Text('Servicios'),
+        ),
+        body: new SingleChildScrollView(
+          child: new Container(
+            margin: new EdgeInsets.all(15.0),
+            child: new Form(
+              key: _key,
+              autovalidate: _validate,
+              child: FormUI(),
             ),
           ),
-          ListTile(
-            leading: const Icon(Icons.attach_money),
-            title: TextField(
-              decoration: new InputDecoration(
-                hintText: "Precioo del servicio",
-              ),
-            ),
-          ),
-          ListTile(
-            leading: const Icon(Icons.drive_eta),
-            title: TextField(
-              decoration: InputDecoration(
-                hintText: "Detalle del servicio",
-              ),
-            ),
-          ),
-          const Divider(
-            height: 1.0,
-          ),
-          FloatingActionButton(
-            onPressed: () {
-              if(_formKey.currentState.validate()){
-                Scaffold.of(context).showSnackBar(SnackBar(content: Text('Usuario guardado'),));
-              }
-            },
-            child: Icon(Icons.save),
-            tooltip: "Guardar",
-          ),
-        ],
+        ),
       ),
     );
+  }
+
+  Widget FormUI() {
+    return new Column(
+      children: <Widget>[
+        new TextFormField(
+          decoration: new InputDecoration(hintText: 'Nombre del Servicio', icon: Icon(Icons.filter_vintage)
+          ),
+          maxLength: 32,
+          validator: validarNombreServicio,
+          onSaved: (String val) {
+            nombre = val;
+          },
+        ),
+        new TextFormField(
+            decoration: new InputDecoration(hintText: 'Precio del servicio', icon: Icon(Icons.monetization_on, color: Colors.greenAccent)),
+            keyboardType: TextInputType.number,
+            maxLength: 10,
+            validator: validarPrecioServicio,
+            onSaved: (String val) {
+              telefono = val;
+            }),
+        new TextFormField(
+            decoration: new InputDecoration(hintText: 'Detalle del servicio', icon: Icon(Icons.details, color: Colors.blueAccent)),
+            maxLength: 100,
+            maxLines: 5,
+            validator: validarDetalleServicio,
+            onSaved: (String val) {
+              direccion = val;
+            }),
+        new SizedBox(height: 15.0),
+        new RaisedButton(
+          onPressed: _sendToServer,
+          child: new Text('Guardar'),
+        )
+      ],
+    );
+  }
+
+  String validarNombreServicio(String value) {
+    String patttern = r'(^[a-zA-Z 0-9]*$)';
+    RegExp regExp = new RegExp(patttern);
+    if (value.length == 0) {
+      return "El nombre del servicio es requerido";
+    } else if (!regExp.hasMatch(value)) {
+      return "El nombre debe ser entre a-z, A-Z y/o numeros";
+    }
+    return null;
+  }
+
+  String validarPrecioServicio(String value) {
+    String patttern = r'(^[0-9]*$)';
+    RegExp regExp = new RegExp(patttern);
+    if (value.length == 0) {
+      return "El precio del servicio es requerido";
+    }
+    return null;
+  }
+
+  String validarDetalleServicio(String value) {
+    if (value.length == 0) {
+      return "Se requiere la direccion";
+    }
+    else {
+      return null;
+    }
+  }
+
+  _sendToServer() {
+    if (_key.currentState.validate()) {
+      // No any error in validation
+      _key.currentState.save();
+    } else {
+      // validation error
+      setState(() {
+        _validate = true;
+      });
+    }
   }
 }
