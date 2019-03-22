@@ -1,4 +1,12 @@
+import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:firebase_storage/firebase_storage.dart';
+import 'dart:math';
+import 'dart:typed_data';
 
 class AdmCliente extends StatefulWidget {
   @override
@@ -7,8 +15,9 @@ class AdmCliente extends StatefulWidget {
 
 class _AdmClienteState extends State<AdmCliente> {
   GlobalKey<FormState> _key = new GlobalKey();
+  String nombre, telefono, direccion, chasis, color, ficha, modelo, placa, traccion, marca;
   bool _validate = false;
-  String nombre, direccion, telefono;
+
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +86,7 @@ class _AdmClienteState extends State<AdmCliente> {
             maxLength: 32,
             validator: validarTexto,
             onSaved: (String val) {
-              direccion = val;
+              chasis = val;
             }),
         TextFormField(
             decoration: InputDecoration(
@@ -85,7 +94,7 @@ class _AdmClienteState extends State<AdmCliente> {
             maxLength: 32,
             validator: validarTexto,
             onSaved: (String val) {
-              direccion = val;
+              color = val;
             }),
         TextFormField(
             decoration: InputDecoration(
@@ -94,7 +103,7 @@ class _AdmClienteState extends State<AdmCliente> {
             maxLength: 32,
             validator: validarTexto,
             onSaved: (String val) {
-              direccion = val;
+              ficha = val;
             }),
         TextFormField(
             decoration: InputDecoration(
@@ -102,7 +111,7 @@ class _AdmClienteState extends State<AdmCliente> {
             maxLength: 32,
             validator: validarTexto,
             onSaved: (String val) {
-              direccion = val;
+              marca = val;
             }),
         TextFormField(
             decoration: InputDecoration(
@@ -110,7 +119,7 @@ class _AdmClienteState extends State<AdmCliente> {
             maxLength: 32,
             validator: validarTexto,
             onSaved: (String val) {
-              direccion = val;
+              modelo = val;
             }),
         TextFormField(
             decoration: InputDecoration(
@@ -119,7 +128,7 @@ class _AdmClienteState extends State<AdmCliente> {
             maxLength: 32,
             validator: validarTexto,
             onSaved: (String val) {
-              direccion = val;
+              placa = val;
             }),
         TextFormField(
             decoration: InputDecoration(
@@ -127,7 +136,7 @@ class _AdmClienteState extends State<AdmCliente> {
             maxLength: 32,
             validator: validarTexto,
             onSaved: (String val) {
-              direccion = val;
+              traccion = val;
             }),
         SizedBox(height: 15.0),
         FloatingActionButton(

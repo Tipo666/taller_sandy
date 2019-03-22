@@ -11,13 +11,17 @@ class _HomeState extends State<Home> {
 
     //Encabezado del Drawer Layout
     var header = DrawerHeader(
+      decoration: BoxDecoration(
+        color: Colors.blueAccent
+      ),
+
       child: Text("Opciones"),
     );
 
     //PopUp de la informacion
     var info = AboutListTile(
       child: Text("Informacion de la aplicacion"),
-      applicationVersion: "v0.0.1",
+      applicationVersion: "v0.1.1",
       applicationName: "Taller Sandy",
       applicationIcon: Icon(
         Icons.info,
