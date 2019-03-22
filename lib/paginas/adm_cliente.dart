@@ -1,12 +1,6 @@
-import 'dart:async';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:firebase_storage/firebase_storage.dart';
-import 'dart:math';
-import 'dart:typed_data';
 
 class AdmCliente extends StatefulWidget {
   @override
@@ -15,9 +9,17 @@ class AdmCliente extends StatefulWidget {
 
 class _AdmClienteState extends State<AdmCliente> {
   GlobalKey<FormState> _key = new GlobalKey();
-  String nombre, telefono, direccion, chasis, color, ficha, modelo, placa, traccion, marca;
+  String nombre,
+      telefono,
+      direccion,
+      chasis,
+      color,
+      ficha,
+      modelo,
+      placa,
+      traccion,
+      marca;
   bool _validate = false;
-
 
   @override
   Widget build(BuildContext context) {
@@ -148,6 +150,8 @@ class _AdmClienteState extends State<AdmCliente> {
     );
   }
 
+  ///Funcion que valida el nombre del cliente
+
   String validarNombre(String value) {
     String patttern = r'(^[a-zA-Z ]*$)';
     RegExp regExp = new RegExp(patttern);
@@ -158,6 +162,8 @@ class _AdmClienteState extends State<AdmCliente> {
     }
     return null;
   }
+
+  ///Funcion que valida el telefono del cliente usando Regular Expressions
 
   String validarTelefono(String value) {
     String patttern = r'(^[0-9]*$)';
@@ -172,6 +178,8 @@ class _AdmClienteState extends State<AdmCliente> {
     return null;
   }
 
+  ///Funcion para validar que los textos no esten vacios
+
   String validarTexto(String value) {
     if (value.length == 0) {
       return "No debe estar vacio";
@@ -180,15 +188,38 @@ class _AdmClienteState extends State<AdmCliente> {
     }
   }
 
+  ///Funcion que envia los datos a Firebase
+
   _sendToServer() {
     if (_key.currentState.validate()) {
       // No any error in validation
       _key.currentState.save();
+
+      DatabaseReference ref = FirebaseDatabase.instance.reference();
+
+      var data = {
+        "nombre": nombre,
+        "telefono": telefono,
+        "direccion": direccion,
+        "chasis": chasis,
+        "ficha": ficha,
+        "marca": marca,
+        "modelo": modelo,
+        "placa": placa,
+        "traccion": traccion,
+        "color": color,
+      };
+
+      ref.child('clientes').push().set(data).then((v) {
+        _key.currentState.reset();
+      });
     } else {
       // validation error
       setState(() {
         _validate = true;
       });
     }
+
+    //Navigator.of(context).pop();
   }
 }
