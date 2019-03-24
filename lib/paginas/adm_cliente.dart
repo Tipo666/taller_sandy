@@ -140,9 +140,31 @@ class _AdmClienteState extends State<AdmCliente> {
             onSaved: (String val) {
               traccion = val;
             }),
-        SizedBox(height: 15.0),
+        // SizedBox(height: 15.0),
         FloatingActionButton(
-          onPressed: _sendToServer,
+          onPressed: () {
+            if (_key.currentState.validate()) {
+              // No any error in validation
+              _key.currentState.save();
+            } else {
+              // validation error
+              setState(() {
+                _validate = true;
+              });
+            }
+            if (nombre != null &&
+                telefono != null &&
+                direccion != null &&
+                chasis != null &&
+                color != null &&
+                ficha != null &&
+                modelo != null &&
+                placa != null &&
+                traccion != null &&
+                marca != null) {
+              confirm(context, 'Confirmacion', 'Desea enviar el reporte?');
+            }
+          }, //_sendToServer,
           tooltip: "Crea el cliente",
           child: Icon(Icons.save),
         )
@@ -188,6 +210,71 @@ class _AdmClienteState extends State<AdmCliente> {
     }
   }
 
+  ///Funcion para confirmar el cuadro de dialogo Si o no
+
+  confirmResult(bool isYes, BuildContext context) {
+    if (isYes) {
+      print('Yes action');
+      Navigator.pop(context);
+      _sendToServer();
+    } else {
+      print('Cancel action');
+      Navigator.pop(context);
+    }
+  }
+
+  ///Funcion para confirmar
+
+  confirm(BuildContext context, String title, String description) {
+    return showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(title),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[Text(description)],
+              ),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () => confirmResult(false, context),
+                child: Text('Cancelar'),
+              ),
+              FlatButton(
+                onPressed: () => confirmResult(true, context),
+                child: Text('Si'),
+              )
+            ],
+          );
+        });
+  }
+
+  ///Popup que indica que se envio la informacion
+
+  information(BuildContext context, String title, String description) {
+    return showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(title),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[Text(description)],
+              ),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('OK'),
+              )
+            ],
+          );
+        });
+  }
+
   ///Funcion que envia los datos a Firebase
 
   _sendToServer() {
@@ -211,7 +298,7 @@ class _AdmClienteState extends State<AdmCliente> {
       };
 
       ref.child('clientes').push().set(data).then((v) {
-        _key.currentState.reset();
+       //_key.currentState.reset();
       });
     } else {
       // validation error
@@ -220,6 +307,8 @@ class _AdmClienteState extends State<AdmCliente> {
       });
     }
 
-    //Navigator.of(context).pop();
+    Navigator.of(context).pop();
+    information(
+        context, 'Guardado', 'El cliente ha sido guardado correctamente.');
   }
 }
