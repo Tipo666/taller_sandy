@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:taller_sandy/paginas/ver_clientes.dart';
 
 class AdmCliente extends StatefulWidget {
   @override
@@ -31,8 +32,16 @@ class _AdmClienteState extends State<AdmCliente> {
               icon: Icon(Icons.add, color: Colors.white),
               tooltip: "Nuevo cliente",
               onPressed: () => 1,
-            )
-          ],
+            ),
+            IconButton(icon: Icon(Icons.remove_red_eye, color: Colors.white),
+              tooltip: "Ver Clientes",
+              onPressed: (){
+                //Navigator.of(context).pop();
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) => new VerClientes()));
+
+              },
+            ) ],
           centerTitle: true,
           title: Text('Cliente'),
         ),

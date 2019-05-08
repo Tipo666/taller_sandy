@@ -11,17 +11,18 @@ class _HomeState extends State<Home> {
 
     //Encabezado del Drawer Layout
     var header = DrawerHeader(
+
       decoration: BoxDecoration(
+        image: DecorationImage(image: NetworkImage('https://images-platform.99static.com/lr3mbJ3iHOE_mksIe0iJxXWum90=/fit-in/900x675/99designs-contests-attachments/26/26499/attachment_26499908'), fit: BoxFit.fill),
         color: Colors.blueAccent
       ),
 
-      child: Text("Opciones"),
     );
 
     //PopUp de la informacion
     var info = AboutListTile(
       child: Text("Informacion de la aplicacion"),
-      applicationVersion: "v0.1.1",
+      applicationVersion: "v0.2.1",
       applicationName: "Taller Sandy",
       applicationIcon: Icon(
         Icons.info,
@@ -66,7 +67,7 @@ class _HomeState extends State<Home> {
             color: Colors.blueAccent,
           ),
           'Facturar',
-          "/"),
+          "/facturar"),
       _getItem(
           Icon(
             Icons.person_add,
@@ -108,6 +109,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.blueAccent,
       ),
       drawer: _getDrawer(context),
+      body: Image(image: NetworkImage('http://www.carcare.org/wp-content/uploads/2015/03/Car-Care-Stats-Infographic-2015.jpg'), fit: BoxFit.fill,),
     );
   }
 }

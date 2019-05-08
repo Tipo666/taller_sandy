@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class AdmServicios extends StatefulWidget {
@@ -8,7 +9,7 @@ class AdmServicios extends StatefulWidget {
 class _AdmServiciosState extends State<AdmServicios> {
   GlobalKey<FormState> _key = new GlobalKey();
   bool _validate = false;
-  String nombre, direccion, telefono;
+  String nombreServicio, detalleServicio, precioServicio;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +50,7 @@ class _AdmServiciosState extends State<AdmServicios> {
           maxLength: 32,
           validator: validarNombreServicio,
           onSaved: (String val) {
-            nombre = val;
+            nombreServicio = val;
           },
         ),
         TextFormField(
@@ -58,7 +59,7 @@ class _AdmServiciosState extends State<AdmServicios> {
             maxLength: 10,
             validator: validarPrecioServicio,
             onSaved: (String val) {
-              telefono = val;
+              precioServicio = val;
             }),
          TextFormField(
             decoration: InputDecoration(hintText: 'Detalle del servicio', icon: Icon(Icons.details, color: Colors.blueAccent)),
@@ -66,11 +67,24 @@ class _AdmServiciosState extends State<AdmServicios> {
             maxLines: 5,
             validator: validarDetalleServicio,
             onSaved: (String val) {
-              direccion = val;
+              detalleServicio = val;
             }),
         SizedBox(height: 15.0),
         FloatingActionButton(
-          onPressed: _sendToServer,
+          onPressed: (){
+            if (_key.currentState.validate()) {
+              // No any error in validation
+              _key.currentState.save();
+            } else {
+              // validation error
+              setState(() {
+                _validate = true;
+              });
+            }
+            if (nombreServicio != null && precioServicio != null && detalleServicio != null) {
+              confirm(context, 'Confirmacion', 'Desea guardar el servicio?');
+            }
+          },
           tooltip: "Crea el servicio",
           child: Icon(Icons.save),
         )
@@ -107,15 +121,96 @@ class _AdmServiciosState extends State<AdmServicios> {
     }
   }
 
+  ///Funcion para confirmar el cuadro de dialogo Si o no
+
+  confirmResult(bool isYes, BuildContext context) {
+    if (isYes) {
+      print('Yes action');
+      Navigator.pop(context);
+      _sendToServer();
+    } else {
+      print('Cancel action');
+      Navigator.pop(context);
+    }
+  }
+
+  ///Funcion para confirmar
+
+  confirm(BuildContext context, String title, String description) {
+    return showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(title),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[Text(description)],
+              ),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () => confirmResult(false, context),
+                child: Text('Cancelar'),
+              ),
+              FlatButton(
+                onPressed: () => confirmResult(true, context),
+                child: Text('Si'),
+              )
+            ],
+          );
+        });
+  }
+
+  ///Popup que indica que se envio la informacion
+
+  information(BuildContext context, String title, String description) {
+    return showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(title),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[Text(description)],
+              ),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('OK'),
+              )
+            ],
+          );
+        });
+  }
+
   _sendToServer() {
     if (_key.currentState.validate()) {
       // No any error in validation
       _key.currentState.save();
+
+      DatabaseReference ref = FirebaseDatabase.instance.reference();
+
+      var data = {
+        "nombre": nombreServicio,
+        "precio": precioServicio,
+        "detalle": detalleServicio,
+
+      };
+
+      ref.child('servicios').push().set(data).then((v) {
+        //_key.currentState.reset();
+      });
     } else {
       // validation error
       setState(() {
         _validate = true;
       });
     }
+    Navigator.of(context).pop();
+    information(
+        context, 'Guardado', 'El servicio ha sido guardado correctamente.');
   }
 }

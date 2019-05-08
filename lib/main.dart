@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taller_sandy/paginas/facturar.dart';
 import 'package:taller_sandy/paginas/home.dart';
 import 'package:taller_sandy/paginas/splash.dart';
 import 'package:taller_sandy/paginas/adm_cliente.dart';
@@ -23,6 +24,7 @@ void main() {
         "/clientes":(BuildContext context) => AdmCliente(),
         "/servicios":(BuildContext context) => AdmServicios(),
         "/productos":(BuildContext context) => AdmProducto(),
+        "/facturar":(BuildContext context) => Facturar(),
         //"/login": (BuildContext context) => LoginPage()
       },
     ));
