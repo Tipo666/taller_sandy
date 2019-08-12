@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:taller_sandy/paginas/ver_servicios.dart';
 
 class AdmServicios extends StatefulWidget {
   @override
@@ -21,6 +22,17 @@ class _AdmServiciosState extends State<AdmServicios> {
               icon: Icon(Icons.add, color: Colors.white),
               tooltip: "New Service",
               onPressed: () => 1,
+            ),
+
+
+            IconButton(icon: Icon(Icons.remove_red_eye, color: Colors.white),
+              tooltip: "See Services",
+              onPressed: (){
+                //Navigator.of(context).pop();
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) => new VerServicios()));
+
+              },
             )
           ],
           centerTitle: true,

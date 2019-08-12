@@ -66,7 +66,7 @@ class _AdmClienteState extends State<AdmCliente> {
         new TextFormField(
           decoration: InputDecoration(
               hintText: 'Client name', icon: Icon(Icons.person)),
-          maxLength: 32,
+          maxLength: 100,
           validator: validarNombre,
           onSaved: (String val) {
             nombre = val;
@@ -94,7 +94,7 @@ class _AdmClienteState extends State<AdmCliente> {
         TextFormField(
             decoration: InputDecoration(
                 hintText: 'Chassis', icon: Icon(Icons.line_weight)),
-            maxLength: 32,
+            maxLength: 100,
             validator: validarTexto,
             onSaved: (String val) {
               chasis = val;
@@ -102,7 +102,7 @@ class _AdmClienteState extends State<AdmCliente> {
         TextFormField(
             decoration: InputDecoration(
                 hintText: 'Color', icon: Icon(Icons.color_lens)),
-            maxLength: 32,
+            maxLength: 100,
             validator: validarTexto,
             onSaved: (String val) {
               color = val;
@@ -111,7 +111,7 @@ class _AdmClienteState extends State<AdmCliente> {
             decoration: InputDecoration(
                 hintText: 'Ficha',
                 icon: Icon(Icons.insert_drive_file)),
-            maxLength: 32,
+            maxLength: 100,
             validator: validarTexto,
             onSaved: (String val) {
               ficha = val;
@@ -119,7 +119,7 @@ class _AdmClienteState extends State<AdmCliente> {
         TextFormField(
             decoration: InputDecoration(
                 hintText: 'Brand', icon: Icon(Icons.mode_comment)),
-            maxLength: 32,
+            maxLength: 100,
             validator: validarTexto,
             onSaved: (String val) {
               marca = val;
@@ -127,7 +127,7 @@ class _AdmClienteState extends State<AdmCliente> {
         TextFormField(
             decoration: InputDecoration(
                 hintText: 'Model', icon: Icon(Icons.iso)),
-            maxLength: 32,
+            maxLength: 100,
             validator: validarTexto,
             onSaved: (String val) {
               modelo = val;
@@ -136,7 +136,7 @@ class _AdmClienteState extends State<AdmCliente> {
             decoration: InputDecoration(
                 hintText: 'PL #',
                 icon: Icon(Icons.image_aspect_ratio)),
-            maxLength: 32,
+            maxLength: 100,
             validator: validarTexto,
             onSaved: (String val) {
               placa = val;
@@ -144,7 +144,7 @@ class _AdmClienteState extends State<AdmCliente> {
         TextFormField(
             decoration: InputDecoration(
                 hintText: 'Traction', icon: Icon(Icons.drive_eta)),
-            maxLength: 32,
+            maxLength: 100,
             validator: validarTexto,
             onSaved: (String val) {
               traccion = val;
