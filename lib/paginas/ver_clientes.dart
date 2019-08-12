@@ -43,13 +43,13 @@ class _VerClientesState extends State<VerClientes> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: new AppBar(
-          title: new Text("Ver Reportes"),
+          title: new Text("Reports"),
           centerTitle: true,
           backgroundColor: Colors.blueAccent,
         ),
-        body: new Container(
+        body: new Center(
             child: allData.length == 0
-                ?  Text('Cargando datos / No hay datos disponibles')
+                ?  CircularProgressIndicator() //Text('Cargando datos / No hay datos disponibles')
                 :  ListView.builder(
                     itemCount: allData.length,
                     itemBuilder: (_, index) {
@@ -78,18 +78,18 @@ class _VerClientesState extends State<VerClientes> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'Nombre : $nombre',
+              'Name : $nombre',
               style: Theme.of(context).textTheme.title,
             ),
-            Text('telefono : $telefono'),
-            Text('direccion : $direccion'),
-            Text('chasis : $chasis'),
-            Text('color : $color'),
+            Text('PhoneNumber : $telefono'),
+            Text('Address : $direccion'),
+            Text('Chassis : $chasis'),
+            Text('Color : $color'),
             Text('ficha : $ficha'),
-            Text('modelo : $modelo'),
-            Text('placa : $placa'),
-            Text('traccion : $traccion'),
-            Text('marca : $marca'),
+            Text('Model : $modelo'),
+            Text('Plate : $placa'),
+            Text('Traction: $traccion'),
+            Text('Brand : $marca'),
           ],
         ),
       ),

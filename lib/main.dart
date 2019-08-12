@@ -14,7 +14,8 @@ import 'package:taller_sandy/paginas/adm_producto.dart';
 void main() {
   runApp(new MaterialApp(
 
-      //debugShowCheckedModeBanner: false,
+
+      debugShowCheckedModeBanner: false,
       home: Home(),
       routes: <String, WidgetBuilder>
       {

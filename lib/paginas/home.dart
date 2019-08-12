@@ -12,18 +12,18 @@ class _HomeState extends State<Home> {
     //Encabezado del Drawer Layout
     var header = DrawerHeader(
 
+
       decoration: BoxDecoration(
         image: DecorationImage(image: NetworkImage('https://images-platform.99static.com/lr3mbJ3iHOE_mksIe0iJxXWum90=/fit-in/900x675/99designs-contests-attachments/26/26499/attachment_26499908'), fit: BoxFit.fill),
-        color: Colors.blueAccent
-      ),
-
+        color: Colors.black12
+      ), child: null,
     );
 
     //PopUp de la informacion
     var info = AboutListTile(
-      child: Text("Informacion de la aplicacion"),
+      child: Text("App info"),
       applicationVersion: "v0.2.1",
-      applicationName: "Taller Sandy",
+      applicationName: "Sandy Mechanical WorkShop",
       applicationIcon: Icon(
         Icons.info,
         color: Colors.blueAccent,
@@ -42,6 +42,7 @@ class _HomeState extends State<Home> {
         title: Text(description),
         onTap: () {
           setState(() {
+            //Navigator.push(context, MaterialPageRoute(builder: (context) => AdmCliente() ));
             Navigator.of(context).pushNamed(route);
           });
         },
@@ -58,7 +59,7 @@ class _HomeState extends State<Home> {
             Icons.home,
             color: Colors.blueAccent,
           ),
-          'Página Principal',
+          'Front Page',
           "/"),
 
       _getItem(
@@ -66,14 +67,14 @@ class _HomeState extends State<Home> {
             Icons.create_new_folder,
             color: Colors.blueAccent,
           ),
-          'Facturar',
+          'Receipts',
           "/facturar"),
       _getItem(
           Icon(
             Icons.person_add,
             color: Colors.blueAccent,
           ),
-          'Clientes',
+          'Clients',
           "/clientes"),
 
       _getItem(
@@ -81,7 +82,7 @@ class _HomeState extends State<Home> {
             Icons.add_to_queue,
             color: Colors.blueAccent,
           ),
-          'Servicios',
+          'Services',
           "/servicios"),
 
       _getItem(
@@ -89,7 +90,7 @@ class _HomeState extends State<Home> {
             Icons.add_shopping_cart,
             color: Colors.blueAccent,
           ),
-          'Productos',
+          'Products',
           "/productos"),
 
       //_getItem(new Icon(Icons.battery_charging_full), "Batería", "/bateria"),
@@ -105,11 +106,14 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Inicio'),
+        title: Text('Front Page'),
+        centerTitle: true,
         backgroundColor: Colors.blueAccent,
       ),
       drawer: _getDrawer(context),
-      body: Image(image: NetworkImage('http://www.carcare.org/wp-content/uploads/2015/03/Car-Care-Stats-Infographic-2015.jpg'), fit: BoxFit.fill,),
+      body: Center(
+        child: Text("Bienvenido", style: TextStyle(fontSize: 50.0),),
+      ),
     );
   }
 }

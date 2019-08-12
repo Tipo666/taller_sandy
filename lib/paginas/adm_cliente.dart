@@ -30,11 +30,11 @@ class _AdmClienteState extends State<AdmCliente> {
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.add, color: Colors.white),
-              tooltip: "Nuevo cliente",
+              tooltip: "New Client",
               onPressed: () => 1,
             ),
             IconButton(icon: Icon(Icons.remove_red_eye, color: Colors.white),
-              tooltip: "Ver Clientes",
+              tooltip: "See Clients",
               onPressed: (){
                 //Navigator.of(context).pop();
                 Navigator.of(context).push(new MaterialPageRoute(
@@ -43,7 +43,7 @@ class _AdmClienteState extends State<AdmCliente> {
               },
             ) ],
           centerTitle: true,
-          title: Text('Cliente'),
+          title: Text('Client'),
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -65,7 +65,7 @@ class _AdmClienteState extends State<AdmCliente> {
       children: <Widget>[
         new TextFormField(
           decoration: InputDecoration(
-              hintText: 'Nombre del cliente', icon: Icon(Icons.person)),
+              hintText: 'Client name', icon: Icon(Icons.person)),
           maxLength: 32,
           validator: validarNombre,
           onSaved: (String val) {
@@ -74,7 +74,7 @@ class _AdmClienteState extends State<AdmCliente> {
         ),
         TextFormField(
             decoration: InputDecoration(
-                hintText: 'Numero telefonico del cliente',
+                hintText: 'Phone number',
                 icon: Icon(Icons.phone)),
             keyboardType: TextInputType.phone,
             maxLength: 10,
@@ -84,7 +84,7 @@ class _AdmClienteState extends State<AdmCliente> {
             }),
         TextFormField(
             decoration: InputDecoration(
-                hintText: 'Direccion del cliente',
+                hintText: 'Address',
                 icon: Icon(Icons.add_location)),
             maxLength: 100,
             validator: validarTexto,
@@ -93,7 +93,7 @@ class _AdmClienteState extends State<AdmCliente> {
             }),
         TextFormField(
             decoration: InputDecoration(
-                hintText: 'Chasis del auto', icon: Icon(Icons.line_weight)),
+                hintText: 'Chassis', icon: Icon(Icons.line_weight)),
             maxLength: 32,
             validator: validarTexto,
             onSaved: (String val) {
@@ -101,7 +101,7 @@ class _AdmClienteState extends State<AdmCliente> {
             }),
         TextFormField(
             decoration: InputDecoration(
-                hintText: 'Color del auto', icon: Icon(Icons.color_lens)),
+                hintText: 'Color', icon: Icon(Icons.color_lens)),
             maxLength: 32,
             validator: validarTexto,
             onSaved: (String val) {
@@ -109,7 +109,7 @@ class _AdmClienteState extends State<AdmCliente> {
             }),
         TextFormField(
             decoration: InputDecoration(
-                hintText: 'Ficha del auto',
+                hintText: 'Ficha',
                 icon: Icon(Icons.insert_drive_file)),
             maxLength: 32,
             validator: validarTexto,
@@ -118,7 +118,7 @@ class _AdmClienteState extends State<AdmCliente> {
             }),
         TextFormField(
             decoration: InputDecoration(
-                hintText: 'Marca del auto', icon: Icon(Icons.mode_comment)),
+                hintText: 'Brand', icon: Icon(Icons.mode_comment)),
             maxLength: 32,
             validator: validarTexto,
             onSaved: (String val) {
@@ -126,7 +126,7 @@ class _AdmClienteState extends State<AdmCliente> {
             }),
         TextFormField(
             decoration: InputDecoration(
-                hintText: 'Modelo del auto', icon: Icon(Icons.iso)),
+                hintText: 'Model', icon: Icon(Icons.iso)),
             maxLength: 32,
             validator: validarTexto,
             onSaved: (String val) {
@@ -134,7 +134,7 @@ class _AdmClienteState extends State<AdmCliente> {
             }),
         TextFormField(
             decoration: InputDecoration(
-                hintText: 'Placa del auto',
+                hintText: 'PL #',
                 icon: Icon(Icons.image_aspect_ratio)),
             maxLength: 32,
             validator: validarTexto,
@@ -143,7 +143,7 @@ class _AdmClienteState extends State<AdmCliente> {
             }),
         TextFormField(
             decoration: InputDecoration(
-                hintText: 'Traccion del auto', icon: Icon(Icons.drive_eta)),
+                hintText: 'Traction', icon: Icon(Icons.drive_eta)),
             maxLength: 32,
             validator: validarTexto,
             onSaved: (String val) {
@@ -171,10 +171,10 @@ class _AdmClienteState extends State<AdmCliente> {
                 placa != null &&
                 traccion != null &&
                 marca != null) {
-              confirm(context, 'Confirmacion', 'Desea enviar el reporte?');
+              confirm(context, 'Confirmation', 'Do you want to send the report?');
             }
           }, //_sendToServer,
-          tooltip: "Crea el cliente",
+          tooltip: "Create the Client",
           child: Icon(Icons.save),
         )
       ],
@@ -187,9 +187,9 @@ class _AdmClienteState extends State<AdmCliente> {
     String patttern = r'(^[a-zA-Z ]*$)';
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
-      return "El nombre es requerido";
+      return "The name is required";
     } else if (!regExp.hasMatch(value)) {
-      return "EL nombre debe ser entre a-z y A-Z";
+      return "The name must contains  a-z or A-Z";
     }
     return null;
   }
@@ -200,11 +200,11 @@ class _AdmClienteState extends State<AdmCliente> {
     String patttern = r'(^[0-9]*$)';
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
-      return "El telefono es requerido";
+      return "The phone number is required";
     } else if (value.length != 10) {
-      return "El numero telefonico debe tener 10 digitos";
+      return "The phone number must have 10 digits";
     } else if (!regExp.hasMatch(value)) {
-      return "Deben de ser numeros";
+      return "Must be numbers";
     }
     return null;
   }
@@ -213,7 +213,7 @@ class _AdmClienteState extends State<AdmCliente> {
 
   String validarTexto(String value) {
     if (value.length == 0) {
-      return "No debe estar vacio";
+      return "It cant be empty";
     } else {
       return null;
     }
@@ -249,11 +249,11 @@ class _AdmClienteState extends State<AdmCliente> {
             actions: <Widget>[
               FlatButton(
                 onPressed: () => confirmResult(false, context),
-                child: Text('Cancelar'),
+                child: Text('Cancel'),
               ),
               FlatButton(
                 onPressed: () => confirmResult(true, context),
-                child: Text('Si'),
+                child: Text('Yes'),
               )
             ],
           );
@@ -318,6 +318,6 @@ class _AdmClienteState extends State<AdmCliente> {
 
     Navigator.of(context).pop();
     information(
-        context, 'Guardado', 'El cliente ha sido guardado correctamente.');
+        context, 'Saved', 'The Client have been saved.');
   }
 }

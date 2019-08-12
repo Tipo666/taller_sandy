@@ -19,12 +19,12 @@ class _AdmServiciosState extends State<AdmServicios> {
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.add, color: Colors.white),
-              tooltip: "Nuevo Servicio",
+              tooltip: "New Service",
               onPressed: () => 1,
             )
           ],
           centerTitle: true,
-          title: Text('Servicios'),
+          title: Text('Services'),
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -45,16 +45,16 @@ class _AdmServiciosState extends State<AdmServicios> {
     return Column(
       children: <Widget>[
          TextFormField(
-          decoration: InputDecoration(hintText: 'Nombre del Servicio', icon: Icon(Icons.filter_vintage)
+          decoration: InputDecoration(hintText: 'Service name', icon: Icon(Icons.filter_vintage)
           ),
-          maxLength: 32,
+          maxLength: 100,
           validator: validarNombreServicio,
           onSaved: (String val) {
             nombreServicio = val;
           },
         ),
         TextFormField(
-            decoration: InputDecoration(hintText: 'Precio del servicio', icon: Icon(Icons.monetization_on, color: Colors.greenAccent)),
+            decoration: InputDecoration(hintText: 'Service price', icon: Icon(Icons.monetization_on, color: Colors.greenAccent)),
             keyboardType: TextInputType.number,
             maxLength: 10,
             validator: validarPrecioServicio,
@@ -62,9 +62,9 @@ class _AdmServiciosState extends State<AdmServicios> {
               precioServicio = val;
             }),
          TextFormField(
-            decoration: InputDecoration(hintText: 'Detalle del servicio', icon: Icon(Icons.details, color: Colors.blueAccent)),
-            maxLength: 100,
-            maxLines: 5,
+            decoration: InputDecoration(hintText: 'Service detail', icon: Icon(Icons.details, color: Colors.blueAccent)),
+            maxLength: 500,
+            maxLines: 10,
             validator: validarDetalleServicio,
             onSaved: (String val) {
               detalleServicio = val;
@@ -82,10 +82,10 @@ class _AdmServiciosState extends State<AdmServicios> {
               });
             }
             if (nombreServicio != null && precioServicio != null && detalleServicio != null) {
-              confirm(context, 'Confirmacion', 'Desea guardar el servicio?');
+              confirm(context, 'Confirmation', 'Do you want to save the service?');
             }
           },
-          tooltip: "Crea el servicio",
+          tooltip: "Create the service",
           child: Icon(Icons.save),
         )
       ],
@@ -96,9 +96,9 @@ class _AdmServiciosState extends State<AdmServicios> {
     String patttern = r'(^[a-zA-Z 0-9]*$)';
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
-      return "El nombre del servicio es requerido";
+      return "The name of the service is required";
     } else if (!regExp.hasMatch(value)) {
-      return "El nombre debe ser entre a-z, A-Z y/o numeros";
+      return "The name must contain  a-z, A-Z and/or numbers";
     }
     return null;
   }
@@ -107,14 +107,14 @@ class _AdmServiciosState extends State<AdmServicios> {
    // String patron = r'(^[0-9]*$)';
     //RegExp regExp = new RegExp(patron);
     if (value.length == 0) {
-      return "El precio del servicio es requerido";
+      return "The price of the service is required";
     }
     return null;
   }
 
   String validarDetalleServicio(String value) {
     if (value.length == 0) {
-      return "Se requiere el detalle del servicio";
+      return "Details of the service is required";
     }
     else {
       return null;
@@ -151,11 +151,11 @@ class _AdmServiciosState extends State<AdmServicios> {
             actions: <Widget>[
               FlatButton(
                 onPressed: () => confirmResult(false, context),
-                child: Text('Cancelar'),
+                child: Text('Cancel'),
               ),
               FlatButton(
                 onPressed: () => confirmResult(true, context),
-                child: Text('Si'),
+                child: Text('Yes'),
               )
             ],
           );
@@ -211,6 +211,6 @@ class _AdmServiciosState extends State<AdmServicios> {
     }
     Navigator.of(context).pop();
     information(
-        context, 'Guardado', 'El servicio ha sido guardado correctamente.');
+        context, 'Saved', 'The service has been saved correctly.');
   }
 }
