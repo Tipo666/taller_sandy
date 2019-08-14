@@ -35,7 +35,6 @@ class Facturar extends StatelessWidget {
 
     //var now = new DateTime.now();
     var berlinWallFell = new DateTime.now();
-    //var moonLanding = DateTime.parse("1969-07-20 20:18:04Z");  // 8:18pm
     print(berlinWallFell);
 
     final pdf = pdfLib.Document();
