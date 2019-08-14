@@ -93,7 +93,7 @@ class _AdmClienteState extends State<AdmCliente> {
             }),
         TextFormField(
             decoration: InputDecoration(
-                hintText: 'Chassis', icon: Icon(Icons.line_weight)),
+                hintText: 'Bin', icon: Icon(Icons.line_weight)),
             maxLength: 100,
             validator: validarTexto,
             onSaved: (String val) {
@@ -109,7 +109,7 @@ class _AdmClienteState extends State<AdmCliente> {
             }),
         TextFormField(
             decoration: InputDecoration(
-                hintText: 'Ficha',
+                hintText: 'Car #',
                 icon: Icon(Icons.insert_drive_file)),
             maxLength: 100,
             validator: validarTexto,

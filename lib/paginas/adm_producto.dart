@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:taller_sandy/paginas/ver_productos.dart';
 
 class AdmProducto extends StatefulWidget {
   @override
@@ -19,12 +20,22 @@ class _AdmProductoState extends State<AdmProducto> {
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.add, color: Colors.white),
-              tooltip: "Nuevo Producto",
+              tooltip: "New Product",
               onPressed: () => 1,
+            ),
+
+            IconButton(icon: Icon(Icons.remove_red_eye, color: Colors.white),
+              tooltip: "See Products",
+              onPressed: (){
+                //Navigator.of(context).pop();
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) => new VerProductos()));
+
+              },
             )
           ],
           centerTitle: true,
-          title: Text('Productos'),
+          title: Text('Products'),
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -46,8 +57,8 @@ class _AdmProductoState extends State<AdmProducto> {
       children: <Widget>[
         TextFormField(
           decoration: InputDecoration(
-              hintText: 'Nombre del Producto', icon: Icon(Icons.insert_chart)),
-          maxLength: 32,
+              hintText: 'Name of the Product', icon: Icon(Icons.insert_chart)),
+          maxLength: 100,
           validator: validarNombreServicio,
           onSaved: (String val) {
             nombreProducto = val;
@@ -55,7 +66,7 @@ class _AdmProductoState extends State<AdmProducto> {
         ),
         TextFormField(
             decoration: InputDecoration(
-                hintText: 'Precio del Producto',
+                hintText: 'Price of the product',
                 icon: Icon(Icons.monetization_on, color: Colors.greenAccent)),
             keyboardType: TextInputType.number,
             maxLength: 10,
@@ -65,10 +76,10 @@ class _AdmProductoState extends State<AdmProducto> {
             }),
         TextFormField(
             decoration: InputDecoration(
-                hintText: 'Detalle del Producto',
+                hintText: 'Detail of the Product',
                 icon: Icon(Icons.lightbulb_outline, color: Colors.blueAccent)),
-            maxLength: 100,
-            maxLines: 5,
+            maxLength: 500,
+            maxLines: 10,
             validator: validarDetalleServicio,
             onSaved: (String val) {
               detalleProducto = val;
@@ -86,10 +97,10 @@ class _AdmProductoState extends State<AdmProducto> {
               });
             }
             if (nombreProducto != null && precioProducto != null && detalleProducto != null) {
-              confirm(context, 'Confirmacion', 'Desea guardar el producto?');
+              confirm(context, 'Confirmation', 'Do you want to save the product?');
             }
           },
-          tooltip: "Crea el producto",
+          tooltip: "Create the product",
           child: Icon(Icons.save),
         )
       ],
@@ -100,23 +111,23 @@ class _AdmProductoState extends State<AdmProducto> {
     String patron = r'(^[a-zA-Z 0-9]*$)';
     RegExp regExp = new RegExp(patron);
     if (value.length == 0) {
-      return "El nombre del Producto es requerido";
+      return "The name of the product is required";
     } else if (!regExp.hasMatch(value)) {
-      return "El nombre debe ser entre a-z, A-Z y/o numeros";
+      return "The name must contain a-z, A-Z and/or numbers";
     }
     return null;
   }
 
   String validarPrecioServicio(String value) {
     if (value.length == 0) {
-      return "El precio del Producto es requerido";
+      return "The price of the product is required";
     }
     return null;
   }
 
   String validarDetalleServicio(String value) {
     if (value.length == 0) {
-      return "Se requiere el detalle del Producto";
+      return "Detail of the product is required";
     } else {
       return null;
     }
@@ -152,11 +163,11 @@ class _AdmProductoState extends State<AdmProducto> {
             actions: <Widget>[
               FlatButton(
                 onPressed: () => confirmResult(false, context),
-                child: Text('Cancelar'),
+                child: Text('Cancel'),
               ),
               FlatButton(
                 onPressed: () => confirmResult(true, context),
-                child: Text('Si'),
+                child: Text('Yes'),
               )
             ],
           );

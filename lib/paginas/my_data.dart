@@ -19,3 +19,9 @@ class MyDataServicio {
 
   MyDataServicio(this.detalle, this.nombre, this.precio);
 }
+
+class MyDataProducto {
+  String detalle, nombre, precio;
+
+  MyDataProducto(this.detalle, this.nombre, this.precio);
+}

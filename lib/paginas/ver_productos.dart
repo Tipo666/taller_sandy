@@ -3,24 +3,24 @@ import 'package:flutter/material.dart';
 
 import 'my_data.dart';
 
-class VerServicios extends StatefulWidget {
+class VerProductos extends StatefulWidget {
   @override
-  _VerServiciosState createState() => _VerServiciosState();
+  _VerProductosState createState() => _VerProductosState();
 }
 
-class _VerServiciosState extends State<VerServicios> {
-  List<MyDataServicio> allData = [];
+class _VerProductosState extends State<VerProductos> {
+  List<MyDataProducto> allData = [];
 
   @override
   void initState() {
     DatabaseReference ref = FirebaseDatabase.instance.reference();
-    ref.child('servicios').once().then((DataSnapshot snap) {
+    ref.child('productos').once().then((DataSnapshot snap) {
       var keys = snap.value.keys;
       var data = snap.value;
       allData.clear();
 
       for (var key in keys) {
-        MyDataServicio d = new MyDataServicio(
+        MyDataProducto d = new MyDataProducto(
           data[key]['detalle'],
           data[key]['nombre'],
           data[key]['precio'],
