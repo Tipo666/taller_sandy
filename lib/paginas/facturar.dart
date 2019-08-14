@@ -31,9 +31,6 @@ class Facturar extends StatelessWidget {
 
   _pdf() async {
 
-
-
-    //var now = new DateTime.now();
     var berlinWallFell = new DateTime.now();
     print(berlinWallFell);
 
