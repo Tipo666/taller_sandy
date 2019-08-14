@@ -41,7 +41,7 @@ class Facturar extends StatelessWidget {
         pageFormat: PdfPageFormat.letter,
         build: (pdfLib.Context context) {
           return pdfLib.Center(
-            child: pdfLib.Text("Hello World"),
+            child: pdfLib.Text("Prueba"),
           );
         })); // Page
 
