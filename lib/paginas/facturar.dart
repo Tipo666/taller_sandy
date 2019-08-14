@@ -42,9 +42,9 @@ class Facturar extends StatelessWidget {
           );
         })); // Page
 
-    final String dir = (await getApplicationDocumentsDirectory()).path;
-    final String path = '$dir/facturasandy.pdf';
-    final File file = File(path);
+    final output = await getExternalStorageDirectory();
+     final file = File('${output.path}/factuuu2.pdf');
+    //final file = File("factuuuu.pdf");
     await file.writeAsBytes(pdf.save());
 /*
     final output = await getTemporaryDirectory();
