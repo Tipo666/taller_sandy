@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
@@ -17,27 +16,37 @@ class Facturar extends StatelessWidget {
         body: Center(
             child: Column(
           children: <Widget>[
-
-
-            RaisedButton(onPressed: _pdf, color: Colors.cyanAccent, child: Icon(Icons.picture_as_pdf),),
-            Text("This section is under construction.", style: TextStyle(fontSize: 30.0), textAlign: TextAlign.center,),
-          Image.network("https://thesoutheastern.com/wp-content/uploads/2018/08/underconstruction-900x472.jpg"),
-          //  NetworkImage(https://www.dictionary.com/e/wp-content/uploads/2018/04/under-construction.jpg'),
+            RaisedButton(
+              onPressed: _pdf,
+              color: Colors.cyanAccent,
+              child: Icon(Icons.picture_as_pdf),
+            ),
+            Text(
+              "This section is under construction.",
+              style: TextStyle(fontSize: 30.0),
+              textAlign: TextAlign.center,
+            ),
+            Image.network(
+                "https://thesoutheastern.com/wp-content/uploads/2018/08/underconstruction-900x472.jpg"),
+            //  NetworkImage(https://www.dictionary.com/e/wp-content/uploads/2018/04/under-construction.jpg'),
           ],
         )));
   }
 
-
-
   _pdf() async {
+
+
+    //var now = new DateTime.now();
+    var berlinWallFell = new DateTime.now();
+    //var moonLanding = DateTime.parse("1969-07-20 20:18:04Z");  // 8:18pm
+    print(berlinWallFell);
 
     var berlinWallFell = new DateTime.now();
     print(berlinWallFell);
 
     final pdf = pdfLib.Document();
 
-    pdf.addPage(
-        pdfLib.Page(
+    pdf.addPage(pdfLib.Page(
         pageFormat: PdfPageFormat.letter,
         build: (pdfLib.Context context) {
           return pdfLib.Center(
@@ -46,17 +55,13 @@ class Facturar extends StatelessWidget {
         })); // Page
 
     final output = await getExternalStorageDirectory();
-     final file = File('${output.path}/factuuu2.pdf');
+    final file = File('${output.path}/factuuu2.pdf');
     //final file = File("factuuuu.pdf");
     await file.writeAsBytes(pdf.save());
 /*
     final output = await getTemporaryDirectory();
     final file = File("${output.path}/example.pdf");
     await file.writeAsBytes(pdf.save());*/
-
-
-
     print("Hi");
-
   }
 }
